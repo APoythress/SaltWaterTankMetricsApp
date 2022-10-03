@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaltWaterTankMetricsApp", "SaltWaterTankMetricsApp.csproj", "{4BDA7D4A-D883-4EC7-A416-BFBD438340F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaltWaterTankMetrics.DataAccess.EF", "SaltWaterTankMetrics.DataAccess.EF\SaltWaterTankMetrics.DataAccess.EF.csproj", "{03F775A9-E546-452E-862B-42116270D747}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BDA7D4A-D883-4EC7-A416-BFBD438340F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BDA7D4A-D883-4EC7-A416-BFBD438340F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BDA7D4A-D883-4EC7-A416-BFBD438340F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BDA7D4A-D883-4EC7-A416-BFBD438340F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03F775A9-E546-452E-862B-42116270D747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03F775A9-E546-452E-862B-42116270D747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03F775A9-E546-452E-862B-42116270D747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03F775A9-E546-452E-862B-42116270D747}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB865DBB-375D-415E-A073-384C79AFEAC4}
+	EndGlobalSection
+EndGlobal
