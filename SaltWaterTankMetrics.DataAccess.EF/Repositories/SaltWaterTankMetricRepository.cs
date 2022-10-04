@@ -1,6 +1,5 @@
 ﻿using SaltWaterTankMetrics.DataAccess.EF.Context;
 using SaltWaterTankMetrics.DataAccess.EF.Models;
-using SaltWaterTankMetrics.DataAccess.EF.ngModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
