@@ -1,7 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using SaltWaterTankMetrics.DataAccess.EF.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddMvc();
 builder.Services.AddControllersWithViews();
+IConfiguration configuration = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.json")
+        .AddEnvironmentVariables().Build();
+builder.Services.AddDbContext<SaltwaterTankContext>(
+        optionsAction =>
+        {
+            optionsAction.UseSqlServer(configuration.GetConnectionString(name: "DefaultConnection"));
+        }
+    );
 
 var app = builder.Build();
 
