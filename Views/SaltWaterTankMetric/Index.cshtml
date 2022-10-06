@@ -1,4 +1,5 @@
-﻿@model SaltWaterTankMetricViewModel
+﻿
+@model SaltWaterTankMetricViewModel
 @using SaltWaterTankMetrics.DataAccess.EF.Models
 @{
     ViewData["Title"] = "SaltWater Tank Metrics Application";
@@ -18,11 +19,11 @@
             @foreach (SaltWaterTankMetric metric in Model.MetricsList)
             {
                 <tr>
-                    <td>@metric.TankId</td>
+                    <td>@metric.MetricsID</td>
                     <td>@metric.SaltWaterTemp</td>
-                    <td>@metric.SaltWaterPh</td>
-                    <td>@metric.SaltWaterNh3</td>
-                    <td>@metric.SaltWaterDkh</td>
+                    <td>@metric.SaltWaterPH</td>
+                    <td>@metric.SaltWaterNH3</td>
+                    <td>@metric.SaltWaterDKH</td>
                 </tr>
             }
         </table>

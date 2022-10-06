@@ -10,9 +10,9 @@ namespace SaltWaterTankMetricsApp.Models
         // Same properties from the EF class go in here
         // Pass this class on the view
 
-        private SaltWaterTankMetricRepository? _repo;
-        public List<SaltWaterTankMetric>? MetricsList { get; set; }
-        public SaltWaterTankMetric? CurrentMetric { get; set; }
+        private SaltWaterTankMetricRepository _repo;
+        public List<SaltWaterTankMetric> MetricsList { get; set; }
+        public SaltWaterTankMetric CurrentMetric { get; set; }
 
         public SaltWaterTankMetricViewModel(SaltwaterTankContext context)
         {
@@ -21,11 +21,11 @@ namespace SaltWaterTankMetricsApp.Models
             CurrentMetric = MetricsList.FirstOrDefault();
         }
 
-        public SaltWaterTankMetricViewModel(SaltwaterTankContext context, int tankID)
+        public SaltWaterTankMetricViewModel(SaltwaterTankContext context, int MetricsID)
         {
-            if (tankID > 0)
+            if (MetricsID > 0)
             {
-                CurrentMetric = GetMetric(tankID);
+                CurrentMetric = GetMetric(MetricsID);
             } else
             {
                 CurrentMetric = new SaltWaterTankMetric();
@@ -35,24 +35,24 @@ namespace SaltWaterTankMetricsApp.Models
         public void SaveMetrics(SaltWaterTankMetric tankMetric)
         {
             
-            if (tankMetric.TankId > 0)
+            if (tankMetric.MetricsID > 0)
             {
-                _repo.Update(tankMetric);
+                _repo.Update(tankMetric, _repo.Get_dbContext());
             }
             else
             {
-                tankMetric.TankId = _repo.Create(tankMetric);
+                tankMetric.MetricsID = _repo.Create(tankMetric);
             }
 
             MetricsList = GetAllMetrics();
-            CurrentMetric = GetMetric(tankMetric.TankId);
+            CurrentMetric = GetMetric(tankMetric.MetricsID);
         }
 
-        public void DeleteMetrics(int tankID)
+        public void DeleteMetrics(int MetricsID)
         {
-            _repo.Delete(tankID);
+            _repo.Delete(MetricsID);
             MetricsList = _repo.GetAllMetrics();
-            CurrentMetric = GetMetric(tankID);
+            CurrentMetric = GetMetric(MetricsID);
         }
 
         public List<SaltWaterTankMetric> GetAllMetrics()
@@ -60,9 +60,9 @@ namespace SaltWaterTankMetricsApp.Models
             return _repo.GetAllMetrics();
         }
 
-        public SaltWaterTankMetric GetMetric(int tankID)
+        public SaltWaterTankMetric GetMetric(int MetricsID)
         {
-            return _repo.GetMetricsByID(tankID);
+            return _repo.GetMetricsByID(MetricsID);
         }
     }
 }

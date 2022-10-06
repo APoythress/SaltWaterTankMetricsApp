@@ -12,7 +12,7 @@ IConfiguration configuration = new ConfigurationBuilder()
 builder.Services.AddDbContext<SaltwaterTankContext>(
         optionsAction =>
         {
-            optionsAction.UseSqlServer(configuration.GetConnectionString(name: "DefaultConnection"));
+            optionsAction.UseSqlServer(configuration.GetConnectionString(name: "AzureConnection"));
         }
     );
 

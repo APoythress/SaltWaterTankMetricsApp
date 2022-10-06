@@ -22,27 +22,32 @@ namespace SaltWaterTankMetrics.DataAccess.EF.Repositories
         {
             _dbContext.Add(metrics);
             _dbContext.SaveChanges();
-            return metrics.TankId;
+            return metrics.MetricsID;
         }
 
-        public int Update(SaltWaterTankMetric metrics)
+        public SaltwaterTankContext Get_dbContext()
         {
-            SaltWaterTankMetric? existingMetrics = _dbContext.SaltWaterTankMetrics.Find(metrics.TankId);
+            return _dbContext;
+        }
+
+        public int Update(SaltWaterTankMetric metrics, SaltwaterTankContext _dbContext)
+        {
+            SaltWaterTankMetric existingMetrics = _dbContext.SaltWaterTankMetrics.Find(metrics.MetricsID);
 
             existingMetrics.SaltWaterTemp = metrics.SaltWaterTemp;
-            existingMetrics.SaltWaterPh = metrics.SaltWaterPh;
-            existingMetrics.SaltWaterNh3 = metrics.SaltWaterNh3;
-            existingMetrics.SaltWaterDkh = metrics.SaltWaterDkh;
+            existingMetrics.SaltWaterPH = metrics.SaltWaterPH;
+            existingMetrics.SaltWaterNH3 = metrics.SaltWaterNH3;
+            existingMetrics.SaltWaterDKH = metrics.SaltWaterDKH;
 
             _dbContext.SaveChanges();
-            return existingMetrics.TankId;
+            return existingMetrics.MetricsID;
         }
 
-        public bool Delete(int tankID)
+        public bool Delete(int MetricsID)
         {
-            SaltWaterTankMetric metrics = _dbContext.SaltWaterTankMetrics.Find(tankID);
+            SaltWaterTankMetric metrics = _dbContext.SaltWaterTankMetrics.Find(MetricsID);
 
-            _dbContext?.Remove(metrics);
+            _ = _dbContext.Remove(metrics);
             _dbContext.SaveChanges();
 
             return true;
@@ -54,9 +59,9 @@ namespace SaltWaterTankMetrics.DataAccess.EF.Repositories
             return metricsList;
         }
 
-        public SaltWaterTankMetric GetMetricsByID(int tankID)
+        public SaltWaterTankMetric GetMetricsByID(int metricsID)
         {
-            SaltWaterTankMetric metrics = _dbContext.SaltWaterTankMetrics.Find(tankID);
+            SaltWaterTankMetric metrics = _dbContext.SaltWaterTankMetrics.Find(metricsID);
             return metrics;
         }
     }
