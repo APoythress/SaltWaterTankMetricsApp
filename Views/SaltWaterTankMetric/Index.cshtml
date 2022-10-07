@@ -1,31 +1,135 @@
-﻿
-@model SaltWaterTankMetricViewModel
+﻿@model SaltWaterTankMetricViewModel
 @using SaltWaterTankMetrics.DataAccess.EF.Models
 @{
     ViewData["Title"] = "SaltWater Tank Metrics Application";
 }
 
-<div class="row">
-    <div class="col-md-10 offset-md-1">
-        <table class="table">
-            <tr>
-                <th>ID</th>
-                <th>Temperature</th>
-                <th>pH</th>
-                <th>Ammonia (NH3)</th>
-                <th>Alkalinity (dKh)</th>
-            </tr>
+<!-- Column to select parameters on left with results displayed on the right. -->
+@foreach (SaltWaterTankMetric metric in Model.MetricsList)
+{
+    <!-- Printing parameters to the page -->
+    <div class="row">
+        <div class="col-md-auto">
+            <div class="list-group" id="myList" role="tablist">
+                <a class="list-group-item list-group-item-action" id="tempNav" data-toggle="list" href="#temp" role="tab" onclick="ShowTemp()">Temperature</a>
+                <a class="list-group-item list-group-item-action" id="alkNav" data-toggle="list" href="#alk" role="tab" onclick="ShowAlk()">Alkalinity</a>
+                <a class="list-group-item list-group-item-action" id="ammoniaNav" data-toggle="list" href="#ammonia" role="tab" onclick="ShowAmmonia()">Ammonia</a>
+                <a class="list-group-item list-group-item-action" id="phNav" data-toggle="list" href="#ph" role="tab" onclick="ShowPh()">PH</a>
 
-            @foreach (SaltWaterTankMetric metric in Model.MetricsList)
-            {
-                <tr>
-                    <td>@metric.MetricsID</td>
-                    <td>@metric.SaltWaterTemp</td>
-                    <td>@metric.SaltWaterPH</td>
-                    <td>@metric.SaltWaterNH3</td>
-                    <td>@metric.SaltWaterDKH</td>
-                </tr>
-            }
-        </table>
+            </div>
+
+        </div>
+
+        <div class="col-8">
+            <div class="tab-content">
+                <!--Temp-->
+                <div class="tab-pane" id="temp" role="tabpanel">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <th>Date</th>
+                            <th>Temperature</th>
+                        </thead>
+                        <tbody>
+                            <td>@metric.MetricsDate</td>
+                            <td>@metric.SaltWaterTemp</td>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--Alkalinity-->
+                <div class="tab-pane" id="alk" role="tabpanel">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <th>Date</th>
+                        <th>Alkalinity</th>
+                        </thead>
+                        <tbody>
+                        <td>@metric.MetricsDate</td>
+                        <td>@metric.SaltWaterDKH</td>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--Ammonia-->
+                <div class="tab-pane" id="ammonia" role="tabpanel">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <th>Date</th>
+                        <th>Ammonia</th>
+                        </thead>
+                        <tbody>
+                        <td>@metric.MetricsDate</td>
+                        <td>@metric.SaltWaterNH3</td>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--PH-->
+                <div class="tab-pane" id="ph" role="tabpanel">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <th>Date</th>
+                        <th>PH</th>
+                        </thead>
+                        <tbody>
+                        <td>@metric.MetricsDate</td>
+                        <td>@metric.SaltWaterPH</td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+    <!-- Scripts to toggle class="active" for the lists -->
+    <script>
+        function ShowTemp() {
+            document.getElementById("temp").classList.add('active');
+            document.getElementById("alk").classList.remove('active');
+            document.getElementById("ammonia").classList.remove('active');
+            document.getElementById("ph").classList.remove('active');
+
+            document.getElementById("tempNav").classList.add('active');
+            document.getElementById("alkNav").classList.remove('active');
+            document.getElementById("ammoniaNav").classList.remove('active');
+            document.getElementById("phNav").classList.remove('active');
+        }
+
+        function ShowAlk() {
+            document.getElementById("alk").classList.add('active');
+            document.getElementById("temp").classList.remove('active');
+            document.getElementById("ammonia").classList.remove('active');
+            document.getElementById("ph").classList.remove('active');
+
+            document.getElementById("alkNav").classList.add('active');
+            document.getElementById("tempNav").classList.remove('active');
+            document.getElementById("ammoniaNav").classList.remove('active');
+            document.getElementById("phNav").classList.remove('active');
+        }
+
+        function ShowAmmonia() {
+            document.getElementById("ammonia").classList.add('active');
+            document.getElementById("alk").classList.remove('active');
+            document.getElementById("temp").classList.remove('active');
+            document.getElementById("ph").classList.remove('active');
+
+            document.getElementById("ammoniaNav").classList.add('active');
+            document.getElementById("alkNav").classList.remove('active');
+            document.getElementById("tempNav").classList.remove('active');
+            document.getElementById("phNav").classList.remove('active');
+        }
+
+        function ShowPh() {
+            document.getElementById("ph").classList.add('active');
+            document.getElementById("alk").classList.remove('active');
+            document.getElementById("ammonia").classList.remove('active');
+            document.getElementById("temp").classList.remove('active');
+            
+            document.getElementById("phNav").classList.add('active');
+            document.getElementById("alkNav").classList.remove('active');
+            document.getElementById("ammoniaNav").classList.remove('active');
+            document.getElementById("tempNav").classList.remove('active');
+        }
+    </script>
+}
+    

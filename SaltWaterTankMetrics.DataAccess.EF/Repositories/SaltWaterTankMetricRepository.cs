@@ -47,7 +47,7 @@ namespace SaltWaterTankMetrics.DataAccess.EF.Repositories
         {
             SaltWaterTankMetric metrics = _dbContext.SaltWaterTankMetrics.Find(MetricsID);
 
-            _ = _dbContext.Remove(metrics);
+            _dbContext.Remove(metrics);
             _dbContext.SaveChanges();
 
             return true;

@@ -17,29 +17,29 @@ namespace SaltWaterTankMetricsApp.Controllers
 
         public IActionResult Index()
         {
-            SaltWaterTankMetricViewModel model = new SaltWaterTankMetricViewModel(_context);
+            SaltWaterTankMetricViewModel model = new(_context);
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Index(int tankID, decimal waterTemp, decimal waterPH, decimal waterNH3, decimal waterDKH)
+        public IActionResult Index(int tankID, DateTime date, decimal waterTemp, decimal waterPH, decimal waterNH3, decimal waterDKH)
         {
-            SaltWaterTankMetricViewModel model = new SaltWaterTankMetricViewModel(_context);
-            SaltWaterTankMetric tankMetrics = new(tankID, waterTemp, waterPH, waterNH3, waterDKH);
+            SaltWaterTankMetricViewModel model = new(_context);
+            SaltWaterTankMetric tankMetrics = new(tankID, date, waterTemp, waterPH, waterNH3, waterDKH);
 
             model.SaveMetrics(tankMetrics);
-            return View();
+            return View(model);
         }
 
         public IActionResult Update(int id)
         {
-            SaltWaterTankMetricViewModel model = new SaltWaterTankMetricViewModel(_context);
+            SaltWaterTankMetricViewModel model = new(_context);
             return View(model);
         }
 
         public IActionResult Delete(int id)
         {
-            SaltWaterTankMetricViewModel model = new SaltWaterTankMetricViewModel(_context);
+            SaltWaterTankMetricViewModel model = new(_context);
 
             if (id > 0)
             {

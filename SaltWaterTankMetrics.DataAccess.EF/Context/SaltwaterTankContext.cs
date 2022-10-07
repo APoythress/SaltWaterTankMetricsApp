@@ -26,7 +26,19 @@ namespace SaltWaterTankMetrics.DataAccess.EF.Context
             {
                 entity.HasKey(e => e.MetricsID);
 
-                entity.Property(e => e.MetricsID).HasColumnName("MetricsID");
+                entity.Property(e => e.MetricsID)
+                    .HasColumnType("int")
+                    .HasColumnName("MetricsID");
+
+                entity.Property(e => e.MetricsDate)
+                    .IsRequired()
+                    .HasColumnType("datetime")
+                    .HasColumnName("MetricsDate");
+
+                entity.Property(e => e.SaltWaterTemp)
+                    .IsRequired()
+                    .HasColumnType("decimal(18, 0)")
+                    .HasColumnName("SaltWaterTemp");
 
                 entity.Property(e => e.SaltWaterDKH)
                     .IsRequired()
@@ -42,8 +54,6 @@ namespace SaltWaterTankMetrics.DataAccess.EF.Context
                     .IsRequired()
                     .HasColumnType("decimal(18, 0)")
                     .HasColumnName("SaltWaterPH");
-
-                entity.Property(e => e.SaltWaterTemp).HasColumnType("decimal(2, 0)");
             });
 
             OnModelCreatingPartial(modelBuilder);
