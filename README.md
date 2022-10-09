@@ -1,11 +1,11 @@
 # SaltWaterTankMetricsApp
 MVC WebApp that will allow you to enter SaltWater Tank Parameters and store them in a database.
 
-![home_screen](https://user-images.githubusercontent.com/19294280/194773611-b89458c3-e076-4282-a0a5-c8c6ebc2470c.PNG)
-![show_all_metrics](https://user-images.githubusercontent.com/19294280/194773642-ec9f5c91-f3b5-46e6-a47a-dc19920b3d98.PNG)
-![create_new_metric](https://user-images.githubusercontent.com/19294280/194773659-59af583f-5a9a-42e2-931e-b4af0ee860e9.PNG)
+## How it works:
+Users can view specified metrics by using the nav section on the left of the screen.
+Users can also add new metrics to the database by clicking the "ADD NEW METRICS" button. 
 
-
-
-
-
+## Screen Shots:
+![home_screen](https://user-images.githubusercontent.com/19294280/194773946-a220d7e1-bd13-444e-8dbc-79959fe25615.PNG)
+![show_all_metrics](https://user-images.githubusercontent.com/19294280/194773949-4fb2a834-b772-4b9e-b3e9-bfb3251f6359.PNG)
+![create_new_metric](https://user-images.githubusercontent.com/19294280/194773953-7ffb4930-b864-4cf6-ba92-ae9e24a7f1fe.PNG)
