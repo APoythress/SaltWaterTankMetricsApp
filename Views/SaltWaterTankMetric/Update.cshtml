@@ -1,0 +1,63 @@
+﻿@model SaltWaterTankMetricViewModel
+@using SaltWaterTankMetrics.DataAccess.EF.Models
+@{
+    string pageType = Model.CurrentMetric.MetricsID > 0 ? "Update Metric" : "Create Metric";
+    ViewData["Title"] = "SaltWater Tank Metrics Application";
+    Model.CurrentMetric.MetricsID = 0;
+}
+
+<form action="~/SaltWaterTankMetric/Index" method="post">
+    <div>
+        <div class="row">
+            <div class="col-6 offset-3 text-center">
+                <h1 class="display-4" style="margin: 20px 0px;">@pageType</h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm form-group">
+                    <label>Date</label>
+                    <input type="datetime-local" class="form-control" name="date" value="@Model.CurrentMetric.MetricsDate" />
+                </div>
+                <div class="col-sm form-group">
+                    <label>Temperature</label>
+                    <input type="number" step=".01" class="form-control" name="waterTemp" value="@Model.CurrentMetric.SaltWaterTemp" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm form-group">
+                    <label>Alkalinity</label>
+                    <input type="number" step=".01" class="form-control" name="waterDKH" value="@Model.CurrentMetric.SaltWaterDKH" />
+                </div>
+                <div class="col-sm form-group">
+                    <label>Ammonia</label>
+                    <input type="number" step=".001" class="form-control" name="waterNH3" value="@Model.CurrentMetric.SaltWaterNH3" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <label>PH</label>
+                    <input type="number" step=".01" class="form-control" name="waterPH" value="@Model.CurrentMetric.SaltWaterPH" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm customButton">
+                    <button type="button" class="btn btn-secondary" onclick="location.href = '/SaltWaterTankMetric/Index'">CANCEL</button>
+                    <button type="submit" class="btn btn-primary">SAVE METRICS</button>
+            </div>
+        </div>
+        </div>
+        <input type="hidden" name="metricsID" value="@Model.CurrentMetric.MetricsID" />
+    </div>    
+    <div class="conatiner">
+    </div>
+
+</form>
+
+<style>
+    .customButton {
+        display: flex;
+        margin: 1rem;
+        justify-content: space-evenly;
+    }
+</style>

@@ -33,7 +33,7 @@ namespace SaltWaterTankMetricsApp.Controllers
 
         public IActionResult Update(int id)
         {
-            SaltWaterTankMetricViewModel model = new(_context);
+            SaltWaterTankMetricViewModel model = new(_context, id);
             return View(model);
         }
 

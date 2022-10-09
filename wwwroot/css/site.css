@@ -16,3 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#metricButton {
+    margin: 15px 2px;
+    display: flex;
+    justify-content: center;
+}

@@ -30,7 +30,7 @@ namespace SaltWaterTankMetrics.DataAccess.EF.Repositories
             return _dbContext;
         }
 
-        public int Update(SaltWaterTankMetric metrics, SaltwaterTankContext _dbContext)
+        public int Update(SaltWaterTankMetric metrics)
         {
             SaltWaterTankMetric existingMetrics = _dbContext.SaltWaterTankMetrics.Find(metrics.MetricsID);
 

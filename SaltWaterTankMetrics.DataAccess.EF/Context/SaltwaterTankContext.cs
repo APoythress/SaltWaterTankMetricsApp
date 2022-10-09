@@ -17,7 +17,7 @@ namespace SaltWaterTankMetrics.DataAccess.EF.Context
         {
         }
 
-        public virtual DbSet<SaltWaterTankMetric> SaltWaterTankMetrics { get; set; } = null!;
+        public virtual DbSet<SaltWaterTankMetric> SaltWaterTankMetrics { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

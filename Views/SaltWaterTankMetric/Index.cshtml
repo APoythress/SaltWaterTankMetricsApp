@@ -4,24 +4,36 @@
     ViewData["Title"] = "SaltWater Tank Metrics Application";
 }
 
-<!-- Column to select parameters on left with results displayed on the right. -->
-@foreach (SaltWaterTankMetric metric in Model.MetricsList)
-{
+
+
+
     <!-- Printing parameters to the page -->
     <div class="row">
+
+        <!-- NAV Bar on left of screen for user to chose which metric to display a list of -->
         <div class="col-md-auto">
             <div class="list-group" id="myList" role="tablist">
                 <a class="list-group-item list-group-item-action" id="tempNav" data-toggle="list" href="#temp" role="tab" onclick="ShowTemp()">Temperature</a>
                 <a class="list-group-item list-group-item-action" id="alkNav" data-toggle="list" href="#alk" role="tab" onclick="ShowAlk()">Alkalinity</a>
                 <a class="list-group-item list-group-item-action" id="ammoniaNav" data-toggle="list" href="#ammonia" role="tab" onclick="ShowAmmonia()">Ammonia</a>
                 <a class="list-group-item list-group-item-action" id="phNav" data-toggle="list" href="#ph" role="tab" onclick="ShowPh()">PH</a>
-
+                <a class="list-group-item list-group-item-action" id="allMetricsNav" data-toggle="list" href="#ph" role="tab" onclick="ShowAllMetrics()">Show All</a>
             </div>
+         <button type="button" onclick="javascript:openLocation('/SaltWaterTankMetric/Update/0')" class="btn btn-success btn-sm" style="margin-top: 1rem;">ADD NEW METRIC</button>
 
         </div>
-
+    
+        <!-- Selector: User chooses whic metric to see by clicking an option -->
         <div class="col-8">
             <div class="tab-content">
+            
+                <!-- Instructions: -->
+                <div class="tab-pane active" id="instructions" role="tabpanel">
+                    <h4>Tips:</h4>
+                    <p>Chose an option from the left to dipslay a list of the desired parameter.</p>
+                    <p>To create a new parameter click the "ADD NEW METRIC" button to be taken to the input screen.</p>
+                </div>
+
                 <!--Temp-->
                 <div class="tab-pane" id="temp" role="tabpanel">
                     <table class="table">
@@ -29,10 +41,14 @@
                             <th>Date</th>
                             <th>Temperature</th>
                         </thead>
+                        @foreach (SaltWaterTankMetric metric in Model.MetricsList)
+                        {
                         <tbody>
-                            <td>@metric.MetricsDate</td>
-                            <td>@metric.SaltWaterTemp</td>
+                        <td>@metric.MetricsDate</td>
+                        <td>@metric.SaltWaterTemp</td>
                         </tbody>
+                        }
+                    
                     </table>
                 </div>
 
@@ -43,10 +59,14 @@
                         <th>Date</th>
                         <th>Alkalinity</th>
                         </thead>
+                    @foreach (SaltWaterTankMetric metric in Model.MetricsList)
+                    {
                         <tbody>
                         <td>@metric.MetricsDate</td>
                         <td>@metric.SaltWaterDKH</td>
                         </tbody>
+                    }
+                        
                     </table>
                 </div>
 
@@ -57,10 +77,13 @@
                         <th>Date</th>
                         <th>Ammonia</th>
                         </thead>
+                        @foreach (SaltWaterTankMetric metric in Model.MetricsList) {
                         <tbody>
                         <td>@metric.MetricsDate</td>
                         <td>@metric.SaltWaterNH3</td>
                         </tbody>
+                    }
+                        
                     </table>
                 </div>
 
@@ -71,28 +94,65 @@
                         <th>Date</th>
                         <th>PH</th>
                         </thead>
+                    @foreach (SaltWaterTankMetric metric in Model.MetricsList)
+                    {
                         <tbody>
                         <td>@metric.MetricsDate</td>
                         <td>@metric.SaltWaterPH</td>
                         </tbody>
+                    }
+                        
+                    </table>
+                </div>
+
+                <!-- View All Metrics-->
+                <div class="tab-pane" id="allMetrics" role="tabpanel">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <th>Date</th>
+                        <th>Temperature</th>
+                        <th>Alkalinity</th>
+                        <th>Ammonio</th>
+                        <th>PH</th>
+                        </thead>
+                        @foreach (SaltWaterTankMetric metric in Model.MetricsList)
+                        {
+                            <tbody>
+                            <td>@metric.MetricsDate</td>
+                            <td>@metric.SaltWaterTemp</td>
+                            <td>@metric.SaltWaterDKH</td>
+                            <td>@metric.SaltWaterNH3</td>
+                            <td>@metric.SaltWaterPH</td>
+                            </tbody>
+                        }
+
                     </table>
                 </div>
             </div>
         </div>
     </div>
 
+
     <!-- Scripts to toggle class="active" for the lists -->
     <script>
+        function openLocation(url) {
+            window.location.href = url;
+        }
+
         function ShowTemp() {
             document.getElementById("temp").classList.add('active');
             document.getElementById("alk").classList.remove('active');
             document.getElementById("ammonia").classList.remove('active');
             document.getElementById("ph").classList.remove('active');
+            document.getElementById("allMetrics").classList.remove('active');
+            document.getElementById("instructions").classList.remove('active');
 
             document.getElementById("tempNav").classList.add('active');
             document.getElementById("alkNav").classList.remove('active');
             document.getElementById("ammoniaNav").classList.remove('active');
             document.getElementById("phNav").classList.remove('active');
+            document.getElementById("allMetricsNav").classList.remove('active');
+
         }
 
         function ShowAlk() {
@@ -100,11 +160,15 @@
             document.getElementById("temp").classList.remove('active');
             document.getElementById("ammonia").classList.remove('active');
             document.getElementById("ph").classList.remove('active');
+            document.getElementById("allMetrics").classList.remove('active');
+            document.getElementById("instructions").classList.remove('active');
 
             document.getElementById("alkNav").classList.add('active');
             document.getElementById("tempNav").classList.remove('active');
             document.getElementById("ammoniaNav").classList.remove('active');
             document.getElementById("phNav").classList.remove('active');
+            document.getElementById("allMetricsNav").classList.remove('active');
+
         }
 
         function ShowAmmonia() {
@@ -112,11 +176,16 @@
             document.getElementById("alk").classList.remove('active');
             document.getElementById("temp").classList.remove('active');
             document.getElementById("ph").classList.remove('active');
+            document.getElementById("allMetrics").classList.remove('active');
+            document.getElementById("instructions").classList.remove('active');
+
 
             document.getElementById("ammoniaNav").classList.add('active');
             document.getElementById("alkNav").classList.remove('active');
             document.getElementById("tempNav").classList.remove('active');
             document.getElementById("phNav").classList.remove('active');
+            document.getElementById("allMetricsNav").classList.remove('active');
+
         }
 
         function ShowPh() {
@@ -124,12 +193,47 @@
             document.getElementById("alk").classList.remove('active');
             document.getElementById("ammonia").classList.remove('active');
             document.getElementById("temp").classList.remove('active');
-            
+            document.getElementById("allMetrics").classList.remove('active');
+            document.getElementById("instructions").classList.remove('active');
+
             document.getElementById("phNav").classList.add('active');
             document.getElementById("alkNav").classList.remove('active');
             document.getElementById("ammoniaNav").classList.remove('active');
             document.getElementById("tempNav").classList.remove('active');
+            document.getElementById("allMetricsNav").classList.remove('active');
+
         }
+
+        function ShowAllMetrics() {
+            document.getElementById("allMetrics").classList.add('active');
+            document.getElementById("alk").classList.remove('active');
+            document.getElementById("ammonia").classList.remove('active');
+            document.getElementById("temp").classList.remove('active');
+            document.getElementById("ph").classList.remove('active');
+            document.getElementById("instructions").classList.remove('active');
+
+            document.getElementById("allMetricsNav").classList.add('active');
+            document.getElementById("alkNav").classList.remove('active');
+            document.getElementById("ammoniaNav").classList.remove('active');
+            document.getElementById("tempNav").classList.remove('active');
+            document.getElementById("phNav").classList.remove('active');
+        }
+        
+        function ShowInstructions() {
+            document.getElementById("instructions").classList.add('active');
+            document.getElementById("allMetrics").classList.remove('active');
+            document.getElementById("alk").classList.remove('active');
+            document.getElementById("ammonia").classList.remove('active');
+            document.getElementById("temp").classList.remove('active');
+            document.getElementById("ph").classList.remove('active');
+
+            document.getElementById("allMetricsNav").classList.remove('active');
+            document.getElementById("alkNav").classList.remove('active');
+            document.getElementById("ammoniaNav").classList.remove('active');
+            document.getElementById("tempNav").classList.remove('active');
+            document.getElementById("phNav").classList.remove('active');
+        }
+        
     </script>
-}
+
     

@@ -37,7 +37,7 @@ namespace SaltWaterTankMetricsApp.Models
             
             if (tankMetric.MetricsID > 0)
             {
-                _repo.Update(tankMetric, _repo.Get_dbContext());
+                _repo.Update(tankMetric);
             }
             else
             {
